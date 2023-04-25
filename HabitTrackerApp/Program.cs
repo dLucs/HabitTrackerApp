@@ -7,11 +7,14 @@ namespace HabitTrackerApp
         static void Main(string[] args)
         {
             string connectionString = @"Data Source=HabitTrackerApp.db";
-            using(var connection =new SqliteConnection(connectionString))
+            using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                var tableCmd=connection.CreateCommand();
-                tableCmd.CommandText = "";
+                var tableCmd = connection.CreateCommand();
+                tableCmd.CommandText = @"CREATE TABLE IF NOT EXISTS drinking_water (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        Date TEXT,
+                        Quantity INTEGER)";
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
